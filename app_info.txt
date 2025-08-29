@@ -1,0 +1,9 @@
+{
+  "appName": "AI股市小幫手",
+  "appVersion": "1.0.3",
+  "promptVersion": "5",
+  "lastUpdate": "2025-08-29",
+  "updateMessage": "本次更新優化了提示語庫，新增川普觀察分類。",
+  "forceUpdate": false,
+  "downloadUrl": "https://apps.apple.com/app/id1234567890"
+}
