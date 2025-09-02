@@ -1,9 +1,9 @@
 {
   "appName": "AI股市小幫手",
   "appVersion": "1.0",
-  "promptVersion": "6",
+  "promptVersion": "7",
   "lastUpdate": "2025-08-29",
-  "updateMessage": "「加權指數」→ 加上「三種走勢情境」",
+  "updateMessage": "增加項目",
   "forceUpdate": false,
   "downloadUrl": "https://apps.apple.com/tw/app/idxxxxxxxx",
   "promptUrl": "https://raw.githubusercontent.com/vicleetw/app-ads-site/main/prompts.json"
