@@ -1,7 +1,7 @@
 {
   "appName": "AI股市小幫手",
   "appVersion": "1.0",
-  "promptVersion": "7",
+  "promptVersion": "5",
   "lastUpdate": "2025-08-29",
   "updateMessage": "增加項目",
   "forceUpdate": false,
