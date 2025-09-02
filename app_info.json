@@ -1,7 +1,7 @@
 {
   "appName": "AI股市小幫手",
   "appVersion": "1.0",
-  "promptVersion": "5",
+  "promptVersion": "6",
   "lastUpdate": "2025-08-29",
   "updateMessage": "新增川普觀察分類",
   "forceUpdate": false,
