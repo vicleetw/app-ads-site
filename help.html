@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>使用說明 — 三大法人買什麼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #0e0f12;
+      --bg2:      #16181e;
+      --bg3:      #1e2028;
+      --border:   rgba(255,255,255,0.07);
+      --text:     #f0f1f3;
+      --text2:    rgba(240,241,243,0.60);
+      --text3:    rgba(240,241,243,0.35);
+      --green:    #3ede94;
+      --red:      #ff5454;
+      --orange:   #ff9f43;
+      --blue:     #4287f5;
+      --yellow:   #ffd43b;
+      --radius:   16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans TC', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header ── */
+    .hero {
+      background: linear-gradient(135deg, #0e0f12 0%, #1a1f2e 50%, #0e1a14 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(62,222,148,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .app-icon {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, #1e3a2f, #0d2518);
+      border-radius: 20px;
+      border: 1px solid rgba(62,222,148,0.25);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 38px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 32px rgba(62,222,148,0.15);
+    }
+    .hero h1 {
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .hero h1 span { color: var(--green); }
+    .hero p {
+      color: var(--text2);
+      font-size: 14px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(62,222,148,0.12);
+      border: 1px solid rgba(62,222,148,0.25);
+      color: var(--green);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-top: 14px;
+    }
+
+    /* ── Nav ── */
+    .nav-bar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(14,15,18,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      display: flex; gap: 4px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-bar::-webkit-scrollbar { display: none; }
+    .nav-link {
+      flex-shrink: 0;
+      display: inline-block;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--text3);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.active { color: var(--green); border-bottom-color: var(--green); }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 16px 80px;
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 48px;
+      scroll-margin-top: 60px;
+    }
+    .section-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .card p, .card li {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.8;
+    }
+    .card ul { padding-left: 18px; }
+    .card li { margin-bottom: 4px; }
+
+    /* ── Tab Overview ── */
+    .tabs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    @media (min-width: 480px) {
+      .tabs-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .tab-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+    .tab-card .tab-icon { font-size: 24px; margin-bottom: 6px; }
+    .tab-card .tab-name { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+    .tab-card .tab-desc { font-size: 11px; color: var(--text3); }
+
+    /* ── Score Table ── */
+    .score-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+    .score-table th {
+      background: var(--bg3);
+      padding: 10px 12px;
+      text-align: left;
+      color: var(--text3);
+      font-weight: 500;
+      font-size: 12px;
+    }
+    .score-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text2);
+      vertical-align: top;
+    }
+    .score-table tr:last-child td { border-bottom: none; }
+    .score-table th:first-child, .score-table td:first-child { border-radius: 0; }
+
+    /* ── Level Badges ── */
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .level-card {
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
+    }
+    .level-card .level-emoji { font-size: 20px; margin-bottom: 4px; }
+    .level-card .level-name { font-weight: 700; margin-bottom: 2px; }
+    .level-card .level-range { font-size: 11px; opacity: 0.7; }
+
+    /* ── Highlight ── */
+    .highlight {
+      background: rgba(62,222,148,0.08);
+      border: 1px solid rgba(62,222,148,0.18);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text2);
+      margin-top: 8px;
+    }
+    .highlight strong { color: var(--green); }
+
+    /* ── Disclaimer ── */
+    .disclaimer {
+      background: rgba(255,84,84,0.06);
+      border: 1px solid rgba(255,84,84,0.18);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: rgba(255,180,180,0.80);
+      margin-top: 8px;
+    }
+
+    /* ── Step list ── */
+    .step-list { list-style: none; padding: 0; }
+    .step-list li {
+      display: flex; gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--text2);
+    }
+    .step-list li:last-child { border-bottom: none; }
+    .step-num {
+      width: 22px; height: 22px;
+      background: var(--bg3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 16px;
+      border-top: 1px solid var(--border);
+      color: var(--text3);
+      font-size: 13px;
+    }
+    footer a { color: var(--green); text-decoration: none; }
+
+    /* ── Colors ── */
+    .c-green  { color: var(--green);  }
+    .c-red    { color: var(--red);    }
+    .c-orange { color: var(--orange); }
+    .c-blue   { color: var(--blue);   }
+    .c-yellow { color: var(--yellow); }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="app-icon">📊</div>
+  <h1>三大法人<span>買什麼</span></h1>
+  <p>台股三大法人即時籌碼追蹤・AI 評分・選股工具</p>
+  <div class="badge">📖 使用說明</div>
+</div>
+
+<!-- Nav -->
+<nav class="nav-bar">
+  <a class="nav-link active" href="#overview">總覽</a>
+  <a class="nav-link" href="#institutional">法人</a>
+  <a class="nav-link" href="#whale">大戶</a>
+  <a class="nav-link" href="#watchlist">自選股</a>
+  <a class="nav-link" href="#sbl">借券</a>
+  <a class="nav-link" href="#dividend">股利</a>
+  <a class="nav-link" href="#ai">AI 分析</a>
+  <a class="nav-link" href="#score">AI 評分</a>
+  <a class="nav-link" href="#screener">智慧選股</a>
+  <a class="nav-link" href="#daily">每日摘要</a>
+  <a class="nav-link" href="#faq">常見問題</a>
+</nav>
+
+<div class="container">
+
+  <!-- ── 總覽 ── -->
+  <section class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(62,222,148,0.12);">📱</div>
+      <div class="section-title">功能總覽</div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <p>「三大法人買什麼」是專為台股投資人設計的籌碼追蹤工具，整合外資、投信、自營商的每日買賣超資料，搭配借券、股利、AI 評分等功能，協助你快速掌握法人動向。</p>
+    </div>
+
+    <div class="tabs-grid">
+      <div class="tab-card">
+        <div class="tab-icon">📊</div>
+        <div class="tab-name" style="color:var(--green)">法人</div>
+        <div class="tab-desc">三大法人排行</div>
+      </div>
+      <div class="tab-card">
+        <div class="tab-icon">👥</div>
+        <div class="tab-name" style="color:var(--orange)">大戶</div>
+        <div class="tab-desc">大戶持股追蹤</div>
+      </div>
+      <div class="tab-card">
+        <div class="tab-icon">⭐</div>
+        <div class="tab-name" style="color:var(--yellow)">自選股</div>
+        <div class="tab-desc">自訂追蹤清單</div>
+      </div>
+      <div class="tab-card">
+        <div class="tab-icon">↔️</div>
+        <div class="tab-name" style="color:var(--blue)">借券</div>
+        <div class="tab-desc">借券賣出排行</div>
+      </div>
+      <div class="tab-card">
+        <div class="tab-icon">💰</div>
+        <div class="tab-name" style="color:var(--red)">股利</div>
+        <div class="tab-desc">除權息日程</div>
+      </div>
+      <div class="tab-card">
+        <div class="tab-icon">✨</div>
+        <div class="tab-name" style="color:var(--blue)">AI 分析</div>
+        <div class="tab-desc">AI 深度解析</div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      ⚠️ 本 App 所有資料僅供參考，不構成任何投資建議。投資有風險，請自行判斷，自負盈虧。
+    </div>
+  </section>
+
+  <!-- ── 法人 ── -->
+  <section class="section" id="institutional">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(62,222,148,0.12);">📊</div>
+      <div class="section-title">法人 — 三大法人排行</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 功能說明</div>
+      <p>顯示當日三大法人（外資、投信、自營商）的買賣超排行，資料涵蓋上市、上櫃股票。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔧 操作方式</div>
+      <ul>
+        <li><strong>法人類型切換</strong>：點選頁面頂部的「外資」「投信」「自營商」Tab 切換顯示對象</li>
+        <li><strong>買超 / 賣超</strong>：切換顯示買超或賣超排行</li>
+        <li><strong>排序方式</strong>：支援當日金額、當日張數、3日 / 5日 / 10日累計金額或張數</li>
+        <li><strong>價格區間篩選</strong>：可依股價範圍縮小範圍（全部 / &lt;50 / 50~100 / 100~500 / 500~1000 / 1000~4000 / &gt;4000）</li>
+        <li><strong>上市 / 上櫃切換</strong>：頂部切換上市或上櫃資料</li>
+        <li><strong>點擊個股</strong>：進入個股詳細頁，查看法人歷史趨勢、借券、收盤行情、AI 評分</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📦 匯出 CSV</div>
+      <p>點擊右上角匯出按鈕，可選擇以下五種方式匯出：</p>
+      <ul style="margin-top:8px;">
+        <li>當前篩選結果</li>
+        <li>三大法人金額前 20 名</li>
+        <li>三大法人張數前 20 名</li>
+        <li>【價格區間】金額前 20 名</li>
+        <li>【價格區間】張數前 20 名</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏷️ AI 評分 Badge</div>
+      <p>每個股票卡片右上角會顯示 AI 評分 badge，顯示法人籌碼綜合評分，方便快速篩選強勢股。詳細評分說明請參考「<a href="#score" style="color:var(--green)">AI 評分</a>」章節。</p>
+    </div>
+  </section>
+
+  <!-- ── 大戶 ── -->
+  <section class="section" id="whale">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(255,159,67,0.12);">👥</div>
+      <div class="section-title">大戶 — 大戶持股追蹤</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 功能說明</div>
+      <p>追蹤大戶（持股 400 張以上）的持股變化，觀察主力資金動向，判斷籌碼集中或分散趨勢。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔧 操作方式</div>
+      <ul>
+        <li><strong>持股分級</strong>：依持股張數分為不同級距，可觀察各層級大戶的異動情形</li>
+        <li><strong>趨勢圖表</strong>：顯示大戶持股比例歷史變化</li>
+        <li><strong>點擊個股</strong>：進入個股詳細頁查看更多資訊</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── 自選股 ── -->
+  <section class="section" id="watchlist">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(255,212,59,0.12);">⭐</div>
+      <div class="section-title">自選股</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 功能說明</div>
+      <p>建立個人追蹤清單，最多支援 5 個群組，每個群組最多 20 支股票。頁面頂部會顯示「每日摘要」Banner，一鍵查看所有自選股的法人動態報告。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔧 操作方式</div>
+      <ul>
+        <li><strong>新增股票</strong>：點擊右上角「+」，搜尋股票代碼或名稱後加入</li>
+        <li><strong>切換群組</strong>：點擊頁面頂部群組名稱，或透過下拉選單切換</li>
+        <li><strong>重新命名群組</strong>：長按群組名稱即可編輯</li>
+        <li><strong>排序</strong>：長按股票卡片可拖曳排序</li>
+        <li><strong>刪除</strong>：左滑股票卡片出現刪除按鈕</li>
+        <li><strong>每日摘要</strong>：點擊頂部摘要 Banner 進入完整報告頁（詳見「<a href="#daily" style="color:var(--green)">每日摘要</a>」）</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── 借券 ── -->
+  <section class="section" id="sbl">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(66,135,245,0.12);">↔️</div>
+      <div class="section-title">借券 — 借券賣出排行</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 功能說明</div>
+      <p>顯示借券賣出排行，借券賣出代表空頭壓力，借券餘額減少（回補）代表空頭回補，對股價有正面意義。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔧 操作方式</div>
+      <ul>
+        <li><strong>排行切換</strong>：可依「借券賣出」或「借券餘額」排行</li>
+        <li><strong>上市 / 上櫃</strong>：切換不同市場資料</li>
+        <li><strong>個股詳細</strong>：點擊進入個股頁查看借券歷史趨勢圖</li>
+      </ul>
+    </div>
+
+    <div class="highlight">
+      <strong>借券趨勢解讀：</strong>借券餘額<span class="c-green">持續減少</span>代表空頭陸續回補，是偏多訊號；借券餘額<span class="c-red">持續增加</span>代表空頭持倉擴大，需留意下行風險。
+    </div>
+  </section>
+
+  <!-- ── 股利 ── -->
+  <section class="section" id="dividend">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(255,84,84,0.12);">💰</div>
+      <div class="section-title">股利 — 除權息行事曆</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 功能說明</div>
+      <p>依日期顯示即將除權息的股票，每個股票卡片顯示收盤價、現金股利、殖利率估算，方便快速評估是否值得參與除息。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔧 操作方式</div>
+      <ul>
+        <li><strong>殖利率 / 除權息切換</strong>：頂部 Tab 切換查看方式</li>
+        <li><strong>股票卡片</strong>：顯示收盤價＋漲跌、現金股利、即時殖利率估算</li>
+        <li><strong>加入自選股</strong>：點擊卡片左側星號圖示，快速加入自選股追蹤</li>
+      </ul>
+    </div>
+
+    <div class="highlight">
+      <strong>殖利率估算說明：</strong>以「現金股利 ÷ 最新收盤價 × 100%」計算，為估算值，實際殖利率以除息基準日的股價為準。
+    </div>
+  </section>
+
+  <!-- ── AI 分析 ── -->
+  <section class="section" id="ai">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(66,135,245,0.12);">✨</div>
+      <div class="section-title">AI 分析</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 功能說明</div>
+      <p>將個股或自選股的法人籌碼數據，整理成結構化的分析提示語，傳送給 AI 助理進行深度解讀。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🤖 支援的 AI 平台</div>
+      <ul>
+        <li>ChatGPT</li>
+        <li>Claude</li>
+        <li>Gemini</li>
+        <li>Perplexity</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔧 操作方式</div>
+      <ul>
+        <li>在個股詳細頁點擊右上角「AI」按鈕</li>
+        <li>App 自動整理法人數據並複製到剪貼簿</li>
+        <li>開啟你偏好的 AI 平台進行分析</li>
+        <li>可在設定頁選擇預設 AI 平台</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── AI 評分 ── -->
+  <section class="section" id="score">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(255,159,67,0.12);">🏆</div>
+      <div class="section-title">AI 評分系統</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 說明</div>
+      <p>AI 評分由本地規則計算，根據三大法人籌碼動向、借券趨勢、成交量、收盤價趨勢等多項指標綜合評估。評分僅供參考，不構成投資建議。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 評分項目</div>
+      <table class="score-table">
+        <thead>
+          <tr>
+            <th>#</th><th>項目</th><th>滿分</th><th>評分邏輯</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>外資加權趨勢</td><td>25</td><td>近10日外資淨買超加權計算，今日權重最高</td></tr>
+          <tr><td>2</td><td>外資主導加成</td><td>10</td><td>連買天數多且買賣比高時額外加分</td></tr>
+          <tr><td>3</td><td>投信加權趨勢</td><td>30</td><td>近10日投信淨買超加權計算</td></tr>
+          <tr><td>4</td><td>自營商加權趨勢</td><td>10</td><td>近10日自營商淨買超加權計算</td></tr>
+          <tr><td>5</td><td>借券趨勢</td><td>10</td><td>借券回補天數及佔股本比例（餘額&lt;0.5%則忽略）</td></tr>
+          <tr><td>6</td><td>成交量變化</td><td>10</td><td>漲要放量、跌要縮量才得高分</td></tr>
+          <tr><td>7</td><td>收盤價趨勢</td><td>5</td><td>今日收盤與均價比較</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏅 評分等級</div>
+      <div class="level-grid">
+        <div class="level-card" style="background:rgba(255,159,67,0.10);border:1px solid rgba(255,159,67,0.20)">
+          <div class="level-emoji">🔥</div>
+          <div class="level-name" style="color:var(--orange)">法人積極介入</div>
+          <div class="level-range">達滿分 85% 以上</div>
+        </div>
+        <div class="level-card" style="background:rgba(62,222,148,0.10);border:1px solid rgba(62,222,148,0.20)">
+          <div class="level-emoji">👍</div>
+          <div class="level-name" style="color:var(--green)">法人偏多布局</div>
+          <div class="level-range">達滿分 70~84%</div>
+        </div>
+        <div class="level-card" style="background:rgba(66,135,245,0.10);border:1px solid rgba(66,135,245,0.20)">
+          <div class="level-emoji">⚖️</div>
+          <div class="level-name" style="color:var(--blue)">法人觀望</div>
+          <div class="level-range">達滿分 50~69%</div>
+        </div>
+        <div class="level-card" style="background:rgba(255,255,255,0.04);border:1px solid var(--border)">
+          <div class="level-emoji">⚠️</div>
+          <div class="level-name" style="color:var(--text3)">法人動向偏淡</div>
+          <div class="level-range">達滿分 50% 以下</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">⚡ 反轉扣分機制</div>
+      <ul>
+        <li>外資連買 3 天以上後突然賣超：<span class="c-red">-10 分</span></li>
+        <li>投信近5天買超後突然賣超：<span class="c-red">-8 分</span></li>
+        <li>昨日三法人全買，今日三法人全賣：<span class="c-red">-15 分</span></li>
+      </ul>
+    </div>
+
+    <div class="disclaimer">
+      ⚠️ 評分由本地規則計算，不代表股票未來走勢。滿分為各計入項目的加總（10天無動作的項目不計入滿分），分數代表相對於計入項目滿分的比例。
+    </div>
+  </section>
+
+  <!-- ── 智慧選股 ── -->
+  <section class="section" id="screener">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(62,222,148,0.12);">🔍</div>
+      <div class="section-title">智慧選股</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 功能說明</div>
+      <p>依自訂條件從全市場篩選符合法人買賣超條件的股票，支援多條件組合（AND / OR），並可加入 AI 評分門檻過濾。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔧 可設定的篩選條件</div>
+      <ul>
+        <li><strong>市場</strong>：上市 / 上櫃 / 全部</li>
+        <li><strong>法人類型</strong>：外資 / 投信 / 自營商</li>
+        <li><strong>股價區間</strong>：全部 / &lt;50 / 50~100 / 100~500 / 500~1000 / 1000~4000 / &gt;4000</li>
+        <li><strong>連續買超 N 天</strong>：法人連續買超達指定天數</li>
+        <li><strong>買超頻率</strong>：在 N 天內至少買超 M 天</li>
+        <li><strong>累計買超金額</strong>：N 天內累計買超金額達門檻</li>
+        <li><strong>由賣轉買（反轉）</strong>：昨日賣超、今日買超</li>
+        <li><strong>三法人聯合買超</strong>：指定法人組合同時買超</li>
+        <li><strong>AI 評分門檻</strong>：不限 / 50分以上 / 70分以上 / 85分以上</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔧 操作方式</div>
+      <ul>
+        <li>點擊右上角篩選按鈕開啟條件設定頁</li>
+        <li>設定完成後點擊「套用」執行篩選</li>
+        <li>篩選結果依條件排序，顯示符合股票數量</li>
+        <li>點擊個股進入詳細頁查看更多資訊</li>
+        <li>選擇 AI 評分門檻後，App 會自動計算每支結果股票的評分（可能需要較長時間）</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── 每日摘要 ── -->
+  <section class="section" id="daily">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(255,212,59,0.12);">📝</div>
+      <div class="section-title">每日摘要</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 功能說明</div>
+      <p>每次開啟 App 自動產生自選股的法人動態摘要報告，一次掌握所有追蹤股票的最新籌碼狀況。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📄 報告內容</div>
+      <ul>
+        <li>收盤價與漲跌</li>
+        <li>外資 / 投信 / 自營商當日買賣超（金額 + 張數）</li>
+        <li>AI 評分與等級</li>
+        <li>異動訊號（例如：外資連買5天、三法人同買、借券大幅回補）</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📤 匯出與分享</div>
+      <ul>
+        <li><strong>匯出 CSV</strong>：將報告匯出為 CSV 格式，可在 Excel 開啟</li>
+        <li><strong>傳 AI 分析</strong>：自動整理成結構化提示語，傳給 AI 進行深度分析</li>
+        <li><strong>重新整理</strong>：點擊右上角重整圖示重新抓取最新資料</li>
+      </ul>
+    </div>
+
+    <div class="highlight">
+      <strong>異動訊號說明：</strong><br>
+      <span class="c-orange">⚡ 外資連買N天</span> — 外資持續連續買超<br>
+      <span class="c-red">🔥 三法人同買</span> — 三大法人當日同時買超<br>
+      <span class="c-green">借券大幅回補</span> — 借券餘額明顯減少，空頭回補跡象
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(66,135,245,0.12);">❓</div>
+      <div class="section-title">常見問題</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">資料更新時間是什麼時候？</div>
+      <p>三大法人資料由台灣證券交易所及櫃買中心每日收盤後公告，通常於下午 3:30 以後陸續更新，App 於開啟時自動下載最新資料。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">為什麼有些股票沒有 AI 評分？</div>
+      <p>AI 評分需要一定天數的歷史資料（至少5天），若該股票的歷史資料不足，或是首次下載尚未累積資料，評分可能無法顯示。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">如何清除資料庫？</div>
+      <p>進入底部導覽列最右側「設定」頁面，可找到「清除所有資料庫」選項。清除後 App 將重新下載所有資料。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">收盤價或漲跌數字看起來不對？</div>
+      <p>資料來源為官方 API，若資料異常，可嘗試在設定頁清除資料庫後重新下載。若問題持續，歡迎聯絡我們回報。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">借券評分顯示「不計入」是什麼意思？</div>
+      <p>若該股票的借券餘額佔股本比例低於 0.5%，代表借券量極少，參考性不高，評分系統會將此項目排除在計分範圍外，不影響整體評分的分母。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">App 是否免費？</div>
+      <p>是的，「三大法人買什麼」完全免費使用，所有功能無需付費。</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p style="margin-bottom:8px;">如有任何問題或功能建議，歡迎聯絡我們</p>
+  <p><a href="mailto:support@nicesoft.com.tw">✉️ support@nicesoft.com.tw</a></p>
+  <p style="margin-top:16px;font-size:12px;color:rgba(240,241,243,0.20)">© 2026 NiceSoft. 本 App 資料僅供參考，不構成投資建議。</p>
+</footer>
+
+<script>
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) {
+          active.classList.add('active');
+          active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-60px 0px -40% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
